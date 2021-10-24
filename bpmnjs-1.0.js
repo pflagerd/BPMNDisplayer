@@ -15,35 +15,27 @@ net.pflager.BpmnJS = class {
         this.bpmndi = "unknown";
     }
 
-    plot(bpmn) {
-        //initialize the W3C DOM Parser
-        let parser = new DOMImplementation();
-        let domDoc = parser.loadXML(bpmn);
-        let docRoot = domDoc.getDocumentElement();
-
-        // resolve namespaces
+    plot(docRoot) {
         this.resolveNamespaces(docRoot);
 
         // paint shapes	loop
-        let shapes = docRoot.getElementsByTagName(this.bpmndi + ":BPMNShape");
+        let shapes = docRoot.getElementsByTagNameNS(this.bpmndi, "BPMNShape");
 
         for (let i = 0; i < shapes.length; i++) {
             let shape = shapes.item(i);
-            let bpmnElement = shape.getAttributes().getNamedItem('bpmnElement').getNodeValue();
-            let bounds = shape.getFirstChild();
-            let attributes = bounds.getAttributes();
-            let x = attributes.getNamedItem('x').getNodeValue();
-            let y = attributes.getNamedItem('y').getNodeValue();
+            let bpmnElement = shape.getAttribute('bpmnElement');
+            let x = shape.firstElementChild.getAttribute('x');
+            let y = shape.firstElementChild.getAttribute('y');
             x = parseInt(x.substring(0, x.indexOf(".") + 3));
             y = parseInt(y.substring(0, y.indexOf(".") + 3));
-            let height = parseInt(attributes.getNamedItem('height').getNodeValue());
-            let width = parseInt(attributes.getNamedItem('width').getNodeValue());
+            let height = parseInt(shape.firstElementChild.getAttribute('height'));
+            let width = parseInt(shape.firstElementChild.getAttribute('width'));
 
             this.paintShape(docRoot, bpmnElement, x, y, width, height);
         }
 
         // paint edges loop
-        let edges = docRoot.selectNodeSet("//" + this.bpmndi + ":BPMNEdge");
+        let edges = docRoot.getElementsByTagName(this.bpmndi + ":BPMNEdge");
 
         for (let i = 0; i < edges.length; i++) {
             let path = "";
@@ -71,20 +63,14 @@ net.pflager.BpmnJS = class {
     }
 
     resolveNamespaces(docRoot) {
-        // namespace resolution is not possible using xmljs, so we do it the on our own
         let xmlns = 'xmlns:';
-        let bpmndi = '"http://www.omg.org/spec/BPMN/20100524/DI"';
-        let definitions = docRoot.getElementsByTagName("definitions").item(0).toString();
-        let patterns = definitions.split(" ");
-        for (let s in patterns) {
-            let pattern = patterns[s];
-            let match = pattern.match("^" + xmlns);
-            if (match !== null && match[0] === xmlns)
-                match = pattern.match(bpmndi + "$");
-                if (match !== null && match[0] === bpmndi) {
-                    this.bpmndi = pattern.substring(xmlns.length, pattern.indexOf("="));
-                    break;
-                }
+        let attributeNames = docRoot.getElementsByTagName("definitions").item(0).getAttributeNames();
+        for (let attributeName of attributeNames) {
+            let match = attributeName.match("^" + xmlns);
+            if (match !== null && match[0] === xmlns) {
+                this[attributeName.substring(6)] = docRoot.getElementsByTagName("definitions").item(0).getAttribute(attributeName);
+                break;
+            }
         }
     }
 
@@ -286,6 +272,7 @@ $(document).ready(function () {
 
     fetch("order.bpmn", {cache: "no-cache"})
         .then(response => response.text())
+        .then(text => new window.DOMParser().parseFromString(text, "text/xml"))
         .then(function (bpmn) {
             console.log(bpmn);
             new net.pflager.BpmnJS($('#canvas')[0], highlight).plot(bpmn);
