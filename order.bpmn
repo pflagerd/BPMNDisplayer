@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="7.2.0" expressionLanguage="http://www.w3.org/1999/XPath" id="sid-bd8397ef-0e41-4745-9bb4-8b8dfc02a143" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="7.2.0" expressionLanguage="http://www.w3.org/1999/XPath" id="sid-bd8397ef-0e41-4745-9bb4-8b8dfc02a143" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
    <collaboration id="sid-9c3f83ca-231a-4340-a91b-ef7bc07c731d">
       <participant id="sid-F5FDF0E3-FD8C-4E91-B480-0E6A14685383" name="Shop" processRef="sid-88781E70-1C8E-4939-8EA9-B2BA427B2290">
          <extensionElements>
@@ -154,7 +155,7 @@ delivery" startQuantity="1">
          <outgoing>sid-91927AE1-3B74-4808-8FE0-A84138D14C63</outgoing>
          <messageEventDefinition id="sid-141d99ba-729a-43d6-b234-a818467fc54a"/>
       </startEvent>
-      <task completionQuantity="1" id="sid-03710226-0352-4987-B51B-2EC44C13BCDF" isForCompensation="false" name="Process 
+      <task completionQuantity="1" id="sid-03710226-0352-4987-B51B-2EC44C13BCDF" isForCompensation="false" name="Process
 complaint" startQuantity="1">
          <extensionElements>
             <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
@@ -309,4 +310,4 @@ processing</text>
       </bpmndi:BPMNPlane>
    </bpmndi:BPMNDiagram>
 </definitions>
-		 
+
