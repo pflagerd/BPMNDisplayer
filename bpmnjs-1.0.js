@@ -1,5 +1,5 @@
 // Namespace
-var net = net || {}
+let net = {}
 net.pflager = {}
 
 // Constructor
@@ -21,45 +21,45 @@ net.pflager.BpmnJS.prototype = {
     plot: function (bpmn) {
 
         //initialize the W3C DOM Parser
-        var parser = new DOMImplementation();
-        var domDoc = parser.loadXML(bpmn);
-        var docRoot = domDoc.getDocumentElement();
+        let parser = new DOMImplementation();
+        let domDoc = parser.loadXML(bpmn);
+        let docRoot = domDoc.getDocumentElement();
 
         // resolve namespaces
         this.resolveNamespaces(docRoot);
 
         // paint shapes	loop
-        var shapes = docRoot.getElementsByTagName(this.bpmndi + ":BPMNShape");
+        let shapes = docRoot.getElementsByTagName(this.bpmndi + ":BPMNShape");
 
-        for (var i = 0; i < shapes.length; i++) {
-            var shape = shapes.item(i);
-            var bpmnElement = shape.getAttributes().getNamedItem('bpmnElement').getNodeValue();
-            var bounds = shape.getFirstChild();
-            var atts = bounds.getAttributes();
-            var x = atts.getNamedItem('x').getNodeValue();
-            var y = atts.getNamedItem('y').getNodeValue();
+        for (let i = 0; i < shapes.length; i++) {
+            let shape = shapes.item(i);
+            let bpmnElement = shape.getAttributes().getNamedItem('bpmnElement').getNodeValue();
+            let bounds = shape.getFirstChild();
+            let attributes = bounds.getAttributes();
+            let x = attributes.getNamedItem('x').getNodeValue();
+            let y = attributes.getNamedItem('y').getNodeValue();
             x = parseInt(x.substring(0, x.indexOf(".") + 3));
             y = parseInt(y.substring(0, y.indexOf(".") + 3));
-            var height = parseInt(atts.getNamedItem('height').getNodeValue());
-            var width = parseInt(atts.getNamedItem('width').getNodeValue());
+            let height = parseInt(attributes.getNamedItem('height').getNodeValue());
+            let width = parseInt(attributes.getNamedItem('width').getNodeValue());
 
             this.paintShape(docRoot, bpmnElement, x, y, width, height);
         }
 
         // paint edges loop
-        var edges = docRoot.selectNodeSet("//" + this.bpmndi + ":BPMNEdge");
+        let edges = docRoot.selectNodeSet("//" + this.bpmndi + ":BPMNEdge");
 
-        for (var i = 0; i < edges.length; i++) {
-            var path = "";
-            var edge = edges.item(i);
-            var bpmnElement = edge.getAttributes().getNamedItem('bpmnElement').getNodeValue();
-            var childs = edge.getChildNodes();
+        for (let i = 0; i < edges.length; i++) {
+            let path = "";
+            let edge = edges.item(i);
+            let bpmnElement = edge.getAttributes().getNamedItem('bpmnElement').getNodeValue();
+            let childNodes = edge.getChildNodes();
 
-            for (var t = 0; t < childs.length; t++) {
-                var startX, startY;
-                var atts1 = childs.item(t).getAttributes();
-                var x1 = atts1.getNamedItem('x').getNodeValue();
-                var y1 = atts1.getNamedItem('y').getNodeValue();
+            for (let t = 0; t < childNodes.length; t++) {
+                let startX, startY;
+                let attributes = childNodes.item(t).getAttributes();
+                let x1 = attributes.getNamedItem('x').getNodeValue();
+                let y1 = attributes.getNamedItem('y').getNodeValue();
                 x1 = parseInt(x1.substring(0, x1.indexOf(".") + 3));
                 y1 = parseInt(y1.substring(0, y1.indexOf(".") + 3));
                 if (path === "") {
@@ -69,29 +69,32 @@ net.pflager.BpmnJS.prototype = {
                 } else {
                     path += "L" + x1 + " " + y1;
                 }
+                this.paintEdge(docRoot, bpmnElement, path, startX, startY);
             }
-            this.paintEdge(docRoot, bpmnElement, path, startX, startY);
         }
     },
 
     resolveNamespaces: function (docRoot) {
         // namespace resolution is not possible using xmljs, so we do it the on our own
-        var xmlns = 'xmlns:';
-        var bpmnurl = '"http://www.omg.org/spec/BPMN/20100524/DI"';
-        var definitions = docRoot.getElementsByTagName("definitions").item(0).toString();
-        var pattern = definitions.split(" ");
-        for (var s in pattern) {
-            var thepattern = pattern[s];
-            if (thepattern.match("^" + xmlns) == xmlns)
-                if (thepattern.match(bpmnurl + "$") == bpmnurl) {
-                    this.bpmndi = thepattern.substring(xmlns.length, thepattern.indexOf("="));
+        let xmlns = 'xmlns:';
+        let bpmndi = '"http://www.omg.org/spec/BPMN/20100524/DI"';
+        let definitions = docRoot.getElementsByTagName("definitions").item(0).toString();
+        let patterns = definitions.split(" ");
+        for (let s in patterns) {
+            let pattern = patterns[s];
+            let match = pattern.match("^" + xmlns);
+            if (match !== null && match[0] === xmlns)
+                match = pattern.match(bpmndi + "$");
+                if (match !== null && match[0] === bpmndi) {
+                    this.bpmndi = pattern.substring(xmlns.length, pattern.indexOf("="));
                     break;
                 }
         }
     },
+
     getElementName: function (element) {
-        var att = element.getAttributes().getNamedItem('name');
-        var name = "";
+        let att = element.getAttributes().getNamedItem('name');
+        let name = "";
         if (att) {
             name = att.getNodeValue();
         }
@@ -99,7 +102,7 @@ net.pflager.BpmnJS.prototype = {
     },
 
     paintShape: function (docRoot, bpmnElement, x, y, width, height) {
-        var element = docRoot.selectNodeSet("//*[@id=" + bpmnElement + "]").item(0);
+        let element = docRoot.selectNodeSet("//*[@id=" + bpmnElement + "]").item(0);
 
         switch (element.localName) {
             case "startEvent":
@@ -148,61 +151,59 @@ net.pflager.BpmnJS.prototype = {
     },
 
     paintEdge: function (docRoot, bpmnElement, path, x, y) {
-        var element = docRoot.selectNodeSet("//*[@id=" + bpmnElement + "]").item(0);
-        var name = this.getElementName(element);
+        let element = docRoot.selectNodeSet("//*[@id=" + bpmnElement + "]").item(0);
+        let name = this.getElementName(element);
 
-        var path = this.paper.path(path);
-        if (element.localName == "messageFlow") {
+        path = this.paper.path(path);
+        if (element.localName === "messageFlow") {
             $(path.node).attr("stroke-dasharray", "5,5");
         }
         path.attr({'arrow-end': 'block-wide-long'});
-        var css = this.getCss(bpmnElement, "edge")
+        let css = this.getCss(bpmnElement, "edge")
         $(path.node).attr("class", css);
         this.paper.text(x + 15, y + 10, name);
     },
 
     paintParticipant: function (x, y, width, height, element) {
-        var name = this.getElementName(element);
-        var shape = this.paper.rect(x, y, width, height);
+        let name = this.getElementName(element);
+        let shape = this.paper.rect(x, y, width, height);
         $(shape.node).attr("class", "participant");
         this.paper.text(x + 15, y + height / 2, name).transform("r270");
     },
     paintLane: function (x, y, width, height, element) {
-        var shape = this.paper.rect(x, y, width, height);
+        let shape = this.paper.rect(x, y, width, height);
         $(shape.node).attr("class", "lane");
     },
     paintExclusiveGateway: function (x, y, width, height, element) {
-        var name = this.getElementName(element);
-        var h2 = height / 2;
-        var w2 = width / 2;
-        var w = width;
-        var h = height;
-        var path = "M" + (x + w2) + " " + (y) + "L" + (x + w) + " " + (y + h2) + "L" + (x + w2) + " " + (y + h) + "L" + (x) + " " + (y + h2) + "L" + (x + w2) + " " + (y);
-        var shape = this.paper.path(path);
+        let name = this.getElementName(element);
+        let h2 = height / 2;
+        let w2 = width / 2;
+        let path = "M" + (x + w2) + " " + (y) + "L" + (x + width) + " " + (y + h2) + "L" + (x + w2) + " " + (y + height) + "L" + (x) + " " + (y + h2) + "L" + (x + w2) + " " + (y);
+        let shape = this.paper.path(path);
         this.paper.text(x + width / 2, y + height / 2, 'X').attr({'font-size': 16, 'font-weight': 'bold'});
         this.paper.text(x + width / 2, y - 10, name);
         $(shape.node).attr("class", "exclusiveGateway");
     },
     paintStartEvent: function (x, y, width, height, element, elementType, bpmnElement) {
-        var shape = this.paper.circle(x + width / 2, y + height / 2, width / 2);
-        var css = this.getCss(bpmnElement, elementType)
+        let shape = this.paper.circle(x + width / 2, y + height / 2, width / 2);
+        let css = this.getCss(bpmnElement, elementType)
         $(shape.node).attr("class", css);
     },
     paintBoundaryEvent: function (x, y, width, height, element) {
-        var shape = this.paper.circle(x + width / 2, y + height / 2, width / 2);
+        let shape = this.paper.circle(x + width / 2, y + height / 2, width / 2);
         $(shape.node).attr("class", "boundaryEvent");
     },
     paintEndEvent: function (x, y, width, height, element, elementType, bpmnElement) {
-        var shape = this.paper.circle(x + width / 2, y + height / 2, width / 2);
-        var css = this.getCss(bpmnElement, elementType)
+        let shape = this.paper.circle(x + width / 2, y + height / 2, width / 2);
+        let css = this.getCss(bpmnElement, elementType)
         $(shape.node).attr("class", css);
     },
     paintTask: function (x, y, width, height, element, elementType, bpmnElement) {
         // paint shape
-        var shape = this.paper.rect(x, y, width, height, 5);
-        var name = this.getElementName(element);
+        let shape = this.paper.rect(x, y, width, height, 5);
+        let name = this.getElementName(element);
         // add text
-        var re = new RegExp(' ', 'g');
+        let re = new RegExp(' ', 'g');
         name = name.replace(re, '\n');
         this.paper.text(x + width / 2, y + height / 2, name);
 
@@ -217,7 +218,7 @@ net.pflager.BpmnJS.prototype = {
         });
 
         // apply css
-        var css = this.getCss(bpmnElement, elementType)
+        let css = this.getCss(bpmnElement, elementType)
         $(shape.node).attr("class", css);
     },
     paintReceiveTask: function (x, y, width, height, element, elementType, bpmnElement) {
@@ -233,17 +234,17 @@ net.pflager.BpmnJS.prototype = {
         this.paper.path("M" + (x + 10) + " " + (y + 10) + "L" + (x + 20) + " " + (y + 20) + "L" + (x + 30) + " " + (y + 10)).attr("stroke", "white");
     },
     paintSubProcess: function (x, y, width, height, element) {
-        var shape = this.paper.rect(x, y, width, height, 5);
+        let shape = this.paper.rect(x, y, width, height, 5);
         $(shape.node).attr("class", "subProcess");
     },
     paintDataStoreReference: function (x, y, width, height, element) {
-        var shape = this.paper.rect(x, y, width, height, 5);
+        let shape = this.paper.rect(x, y, width, height, 5);
         $(shape.node).attr("class", "dataStoreReference");
     },
     paintTextAnnotation: function (x, y, width, height, element) {
-        var shape = this.paper.rect(x, y, width, height);
-        var text = element.getFirstChild().getFirstChild().getNodeValue();
-        var re = new RegExp(' ', 'g');
+        let shape = this.paper.rect(x, y, width, height);
+        let text = element.getFirstChild().getFirstChild().getNodeValue();
+        let re = new RegExp(' ', 'g');
         text = text.replace(re, '\n');
         this.paper.text(x + width / 2, y + height / 2, text).attr({'font-size': 8});
         $(shape.node).attr("class", "textAnnotation");
@@ -251,13 +252,13 @@ net.pflager.BpmnJS.prototype = {
         $(this.paper.path("M" + x + " " + y + "L" + x + " " + (y + height / 2)).node).attr("stroke-dasharray", "5,5");
     },
     paintDefault: function (x, y, width, height, element) {
-        var shape = this.paper.rect(x, y, width, height, 5);
+        let shape = this.paper.rect(x, y, width, height, 5);
         this.paper.text(x + 5, y + 5, element.localName);
         $(shape.node).attr("class", "shape");
     },
     getCss: function (bpmnElement, cssClass) {
-        for (i in this.highlighted) {
-            if (this.highlighted[i] == bpmnElement) {
+        for (let i in this.highlighted) {
+            if (this.highlighted[i] === bpmnElement) {
                 cssClass += "-high";
                 break;
             }
@@ -266,4 +267,29 @@ net.pflager.BpmnJS.prototype = {
     }
 }
 
-//}());
+$(document).ready(function () {
+    let high = [
+        "sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD",
+        "sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F",
+        "sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283",
+        "sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE",
+        "sid-2294910A-71B7-4FB7-9301-F64298377F67",
+        "sid-A291BF37-420D-4854-B471-41F3BE6028AF",
+        "sid-20D1A397-8996-4362-913F-C177BE3CEE04",
+        "sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8",
+        "sid-B6240BCC-F776-497E-97AF-7CFC9418686D",
+        "sid-77732534-FD07-49E9-B035-676A73EAF489",
+        "sid-67B68745-2B36-456A-9B22-945CC9DE3C7B",
+        "sid-97421847-B87C-4AF0-B055-E876911A8D9A",
+        "sid-B8685999-52B2-413C-A78D-30864A7191CE",
+        "sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5",
+        "sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA",
+        "sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571"];
+
+    fetch("order.bpmn", {cache: "no-cache"})
+        .then(response => response.text())
+        .then(function (bpmn) {
+            console.log(bpmn);
+            new net.pflager.BpmnJS($('#canvas')[0], high).plot(bpmn);
+        });
+});
