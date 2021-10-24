@@ -1,87 +1,87 @@
-html,body{
-	background-color:white;
-	font-family:Verdana;
-	width:100%;
-  height:100%;
-	margin:20px;
-	border:0px;
+html, body {
+    background-color: white;
+    font-family: Verdana;
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+    border: 0px;
 }
 
-div{
-	width:100%;
-  height:1500px;
-	background-color:white;
+div {
+    width: 100%;
+    height: 1500px;
+    background-color: white;
 }
 
-.shape{
-   fill:red;
+.shape {
+    fill: red;
 }
 
-.edge{
-   stroke:black;
+.edge {
+    stroke: black;
 }
 
-.edge-high{
-   stroke:red;
-   stroke-width:2px;
+.edge-high {
+    stroke: red;
+    stroke-width: 2px;
 }
 
-.participant{
-   fill:lightgray;
+.participant {
+    fill: lightgray;
 }
 
-.lane{
-   fill:whitesmoke;
+.lane {
+    fill: whitesmoke;
 }
 
-.startEvent, .boundaryEvent{
-   fill:white;
+.startEvent, .boundaryEvent {
+    fill: white;
 }
 
-.startEvent-high, .boundaryEvent-high{
-   fill:white;
-   stroke:red;
-   stroke-width:2px; 
+.startEvent-high, .boundaryEvent-high {
+    fill: white;
+    stroke: red;
+    stroke-width: 2px;
 }
 
-.endEvent{
-   stroke-width:3; 
-}
-    
-.endEvent-high{
-   stroke:red;
-   stroke-width:3; 
+.endEvent {
+    stroke-width: 3;
 }
 
-.serviceTask, .task, .userTask, .subProcess{
-   fill:lightyellow;
+.endEvent-high {
+    stroke: red;
+    stroke-width: 3;
 }
 
-.serviceTask-high, .task-high, .userTask-high, .subProcess-high{
-   fill:lightyellow;
-   stroke:red;
-   stroke-width:2px; 
+.serviceTask, .task, .userTask, .subProcess {
+    fill: lightyellow;
 }
 
-.sendTask, .receiveTask{
-   fill:lightblue;
+.serviceTask-high, .task-high, .userTask-high, .subProcess-high {
+    fill: lightyellow;
+    stroke: red;
+    stroke-width: 2px;
 }
 
-.sendTask-high, .receiveTask-high{
-   fill:lightblue;
-   stroke:red;
-   stroke-width:2px; 
+.sendTask, .receiveTask {
+    fill: lightblue;
 }
 
-.textAnnotation{
-   fill:white;
-   stroke:white;
+.sendTask-high, .receiveTask-high {
+    fill: lightblue;
+    stroke: red;
+    stroke-width: 2px;
 }
 
-.dataStoreReference{
-   fill:gray;
+.textAnnotation {
+    fill: white;
+    stroke: white;
 }
 
-.exclusiveGateway{
-   fill:white;
+.dataStoreReference {
+    fill: gray;
+}
+
+.exclusiveGateway {
+    fill: white;
 }
