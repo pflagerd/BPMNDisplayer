@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<title>bpmnjs-example</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/bpmnjs.css"/>	
-	<script src="js/jquery-1.10.2.js"></script>
-	<script src="js/xmlsax.js"></script>
-	<script src="js/xmlw3cdom.js"></script>
-	<script src="js/xmlxpath.js"></script>
-	<script src="js/raphael.js"></script>
-	<script src="bpmnjs-1.0.js"></script>
-	
-  <script type="text/javascript">
+<head>
+    <title>bpmnjs-example</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/bpmnjs.css"/>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/xmlsax.js"></script>
+    <script src="js/xmlw3cdom.js"></script>
+    <script src="js/xmlxpath.js"></script>
+    <script src="js/raphael.js"></script>
+    <script src="bpmnjs-1.0.js"></script>
 
-  var high = [
-  "sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD",
-  "sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F",
-  "sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283",
-  "sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE",
-  "sid-2294910A-71B7-4FB7-9301-F64298377F67",
-  "sid-A291BF37-420D-4854-B471-41F3BE6028AF",
-  "sid-20D1A397-8996-4362-913F-C177BE3CEE04",
-  "sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8",
-  "sid-B6240BCC-F776-497E-97AF-7CFC9418686D",
-  "sid-77732534-FD07-49E9-B035-676A73EAF489",
-  "sid-67B68745-2B36-456A-9B22-945CC9DE3C7B",
-  "sid-97421847-B87C-4AF0-B055-E876911A8D9A",
-  "sid-B8685999-52B2-413C-A78D-30864A7191CE",
-  "sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5",
-  "sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA",
-  "sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571"];
+    <script type="text/javascript">
 
-    fetch("order.bpmn", {cache: "no-cache"})
-        .then(response => response.text())
-        .then(function (bpmn) {
-            console.log(bpmn);
-            new net.pleus.BpmnJS($('#canvas')[0], high).plot(bpmn);
-        });
+        var high = [
+            "sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD",
+            "sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F",
+            "sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283",
+            "sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE",
+            "sid-2294910A-71B7-4FB7-9301-F64298377F67",
+            "sid-A291BF37-420D-4854-B471-41F3BE6028AF",
+            "sid-20D1A397-8996-4362-913F-C177BE3CEE04",
+            "sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8",
+            "sid-B6240BCC-F776-497E-97AF-7CFC9418686D",
+            "sid-77732534-FD07-49E9-B035-676A73EAF489",
+            "sid-67B68745-2B36-456A-9B22-945CC9DE3C7B",
+            "sid-97421847-B87C-4AF0-B055-E876911A8D9A",
+            "sid-B8685999-52B2-413C-A78D-30864A7191CE",
+            "sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5",
+            "sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA",
+            "sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571"];
 
-	</script>
-		
-	</head>
-	<body>
-		<div id="canvas"/> <br/>
-	</body>
+        fetch("order.bpmn", {cache: "no-cache"})
+            .then(response => response.text())
+            .then(function (bpmn) {
+                console.log(bpmn);
+                new net.pleus.BpmnJS($('#canvas')[0], high).plot(bpmn);
+            });
+
+    </script>
+
+</head>
+<body>
+<div id="canvas"/>
+<br/>
+</body>
 </html>
