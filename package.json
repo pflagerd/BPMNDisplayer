@@ -1,0 +1,19 @@
+{
+  "name": "bpmnjs-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bpmnjs-1.0.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@pflager.net:bpmnjs-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
