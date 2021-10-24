@@ -59,11 +59,11 @@ net.pflager.BpmnJS = class {
                 x1 = parseInt(x1.substring(0, x1.indexOf(".") + 3));
                 y1 = parseInt(y1.substring(0, y1.indexOf(".") + 3));
                 if (path === "") {
-                    path = "M" + x1 + " " + y1;
+                    path = "M " + x1 + " " + y1;
                     startX = x1;
                     startY = y1;
                 } else {
-                    path += "L" + x1 + " " + y1;
+                    path += "L " + x1 + " " + y1;
                 }
             }
             this.paintEdge(docRoot, bpmnElement, path, startX, startY);
