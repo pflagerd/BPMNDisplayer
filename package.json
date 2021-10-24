@@ -4,7 +4,8 @@
   "description": "",
   "main": "BPMNDisplayer.js",
   "scripts": {
-    "dev": "make"
+    "build": "make",
+    "dev": "make dev"
   },
   "repository": {
     "type": "git",
