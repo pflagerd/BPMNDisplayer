@@ -3,7 +3,7 @@ let net = {}
 net.pflager = {}
 
 // Constructor
-net.pflager.BpmnJS = class {
+net.pflager.BPMNDisplayer = class {
     constructor(canvas, highlighted) {
         // List of element ids for highlighting
         this.highlighted = highlighted;
@@ -270,6 +270,6 @@ $(document).ready(function () {
         .then(text => new window.DOMParser().parseFromString(text, "text/xml"))
         .then(function (bpmn) {
             console.log(bpmn);
-            new net.pflager.BpmnJS($('#canvas')[0], highlight).plot(bpmn);
+            new net.pflager.BPMNDisplayer($('#canvas')[0], highlight).plot(bpmn);
         });
 });

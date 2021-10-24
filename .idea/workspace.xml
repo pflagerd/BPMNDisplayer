@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="eaa195e4-07ea-4402-9695-cbc910ac08d1" name="Changes" comment="Elminated libraries." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="use_window_dom" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="use_window_dom" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1zw3pQDbTVHTQgB5aU3CwZGFY9y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="bpmnjs.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/bpmnjs-example/bpmnjs.html?_ij_reload" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../BPMNDisplayer/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.dev" />
+      <item itemvalue="JavaScript Debug.bpmnjs.html" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.bpmnjs.html" />
+        <item itemvalue="JavaScript Debug.bpmnjs.html" />
+        <item itemvalue="JavaScript Debug.bpmnjs.html" />
+        <item itemvalue="JavaScript Debug.bpmnjs.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eaa195e4-07ea-4402-9695-cbc910ac08d1" name="Changes" comment="" />
+      <created>1635045504680</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635045504680</updated>
+      <workItem from="1635045505964" duration="17931000" />
+    </task>
+    <task id="LOCAL-00001" summary="progress">
+      <created>1635045698802</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635045698802</updated>
+    </task>
+    <task id="LOCAL-00002" summary="progress">
+      <created>1635046340915</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1635046340915</updated>
+    </task>
+    <task id="LOCAL-00003" summary="reformatted.  pflager.net">
+      <created>1635047429313</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1635047429313</updated>
+    </task>
+    <task id="LOCAL-00004" summary="var -&gt; let.  Lots of warnings.">
+      <created>1635050080004</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1635050080004</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Warning.">
+      <created>1635050862578</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1635050862578</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Don't print empty text.  Cuddle up text closer to line.  Fix problem with StartX, StartY">
+      <created>1635053020117</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1635053020117</updated>
+    </task>
+    <task id="LOCAL-00007" summary="reformat.">
+      <created>1635053273951</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1635053273951</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix warning.">
+      <created>1635053349269</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1635053349269</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Turn off scrollbars.">
+      <created>1635054154460</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1635054154460</updated>
+    </task>
+    <task id="LOCAL-00010" summary="make a dev script in npm which calls make.">
+      <created>1635054178081</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1635054178081</updated>
+    </task>
+    <task id="LOCAL-00011" summary="More standard spacing.">
+      <created>1635054212709</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1635054212709</updated>
+    </task>
+    <task id="LOCAL-00012" summary="progress commit.">
+      <created>1635058498444</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1635058498444</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Elminated libraries.">
+      <created>1635061087766</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1635061087766</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="makefile" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="progress" />
+    <MESSAGE value="reformatted.  pflager.net" />
+    <MESSAGE value="var -&gt; let.  Lots of warnings." />
+    <MESSAGE value="Warning." />
+    <MESSAGE value="Don't print empty text.  Cuddle up text closer to line.  Fix problem with StartX, StartY" />
+    <MESSAGE value="reformat." />
+    <MESSAGE value="Fix warning." />
+    <MESSAGE value="Turn off scrollbars." />
+    <MESSAGE value="make a dev script in npm which calls make." />
+    <MESSAGE value="More standard spacing." />
+    <MESSAGE value="progress commit." />
+    <MESSAGE value="Elminated libraries." />
+    <option name="LAST_COMMIT_MESSAGE" value="Elminated libraries." />
+  </component>
+</project>

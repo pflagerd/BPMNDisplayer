@@ -1,4 +1,7 @@
 .PHONY: all
 
 all:
-	live-server --ignore=node_modules/ --open=bpmnjs.html
+	html-inline -i BPMNDisplayer -o demo.html
+
+dev:
+	live-server --ignore=node_modules/ --open=BPMNDisplayer.html
