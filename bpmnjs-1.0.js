@@ -35,19 +35,19 @@ net.pflager.BpmnJS = class {
         }
 
         // paint edges loop
-        let edges = docRoot.getElementsByTagName(this.bpmndi + ":BPMNEdge");
+        let edges = docRoot.getElementsByTagNameNS(this.bpmndi, "BPMNEdge");
 
         for (let i = 0; i < edges.length; i++) {
             let path = "";
             let edge = edges.item(i);
-            let bpmnElement = edge.getAttributes().getNamedItem('bpmnElement').getNodeValue();
-            let childNodes = edge.getChildNodes();
+            let bpmnElement = edge.getAttribute('bpmnElement');
+            let children = edge.children;
 
             let startX, startY;
-            for (let t = 0; t < childNodes.length; t++) {
-                let attributes = childNodes.item(t).getAttributes();
-                let x1 = attributes.getNamedItem('x').getNodeValue();
-                let y1 = attributes.getNamedItem('y').getNodeValue();
+            for (let t = 0; t < children.length; t++) {
+                let childNode = children.item(t);
+                let x1 = childNode.getAttribute('x');
+                let y1 = childNode.getAttribute('y');
                 x1 = parseInt(x1.substring(0, x1.indexOf(".") + 3));
                 y1 = parseInt(y1.substring(0, y1.indexOf(".") + 3));
                 if (path === "") {
@@ -75,16 +75,11 @@ net.pflager.BpmnJS = class {
     }
 
     getElementName(element) {
-        let att = element.getAttributes().getNamedItem('name');
-        let name = "";
-        if (att) {
-            name = att.getNodeValue();
-        }
-        return name;
+        return element.getAttribute('name');
     }
 
     paintShape(docRoot, bpmnElement, x, y, width, height) {
-        let element = docRoot.selectNodeSet("//*[@id=" + bpmnElement + "]").item(0);
+        let element = docRoot.getElementById(bpmnElement);
 
         switch (element.localName) {
             case "startEvent":
@@ -133,7 +128,7 @@ net.pflager.BpmnJS = class {
     }
 
     paintEdge(docRoot, bpmnElement, path, x, y) {
-        let element = docRoot.selectNodeSet("//*[@id=" + bpmnElement + "]").item(0);
+        let element = docRoot.getElementById(bpmnElement);
         let name = this.getElementName(element);
 
         path = this.paper.path(path);
@@ -143,7 +138,7 @@ net.pflager.BpmnJS = class {
         path.attr({'arrow-end': 'block-wide-long'});
         let css = this.getCss(bpmnElement, "edge")
         $(path.node).attr("class", css);
-        if (name.trim().length !== 0)
+        if (name != null && name.trim().length !== 0)
             this.paper.text(x + 10, y + 8, name.trim());
     }
 
@@ -227,7 +222,7 @@ net.pflager.BpmnJS = class {
     }
     paintTextAnnotation(x, y, width, height, element) {
         let shape = this.paper.rect(x, y, width, height);
-        let text = element.getFirstChild().getFirstChild().getNodeValue();
+        let text = element.firstElementChild.textContent;
         let re = new RegExp(' ', 'g');
         text = text.replace(re, '\n');
         this.paper.text(x + width / 2, y + height / 2, text).attr({'font-size': 8});
